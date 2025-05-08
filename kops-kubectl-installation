@@ -9,3 +9,10 @@ curl -Lo kops https://github.com/kubernetes/kops/releases/download/v1.27.1/kops-
 chmod +x kops
 sudo mv kops /usr/local/bin/
 kops version
+
+CREATING CLUSTERS
+
+export KOPS_STATE_STORE=s3://bhargavi.kops.v1
+kops create cluster --name bhargavi.k8s.local --zones us-east-1a --master-size t2.medium --node-size t2.micro --node-count=1
+kops update cluster --name bhargavi.k8s.local --yes --admin
+kops delete cluster bhargavi.k8s.local --yes
